@@ -1,10 +1,19 @@
 import React from 'react'
 import LeftSide from '../components/LeftSideBar/LeftSide'
 import Maintweet from '../components/mainTweet/Maintweet'
+import { useSelector } from 'react-redux'
+import Login from '../auth/Login'
 
 const Home = () => {
+
+  const { currentUser } = useSelector((state)=> state.user)
+  console.log('first', currentUser)
+
   return (
-    <div className='grid grid-cols-1 md:grid-cols-4'>
+    <>
+    {
+      currentUser ? (
+        <div className='grid grid-cols-1 md:grid-cols-4'>
       <div className='px-6'>
         <LeftSide />
       </div>
@@ -12,6 +21,10 @@ const Home = () => {
         <Maintweet />
       </div>
     </div>
+      ) : ( <Login />)
+    }
+    
+    </>
   )
 }
 

@@ -39,7 +39,7 @@ export const likeOrDislike = async (req, res, next) => {
       res.status(200).json("tweet has been disliked");
     }
   } catch (err) {
-    handleError(500, err);
+    res.json(err)
   }
 };
 
@@ -55,11 +55,11 @@ export const getAllTweets = async (req, res, next) => {
 
     res.status(200).json(userTweets.concat(...followersTweets));
   } catch (err) {
-    handleError(500, err);
+    res.json(err)
   }
 };
 
-export const getUserTweets = async (req, res, next) => {
+export const getUserTweets = async (req, res) => {
   try {
     const userTweets = await Tweet.find({ userId: req.params.id }).sort({
       createAt: -1,
@@ -67,6 +67,6 @@ export const getUserTweets = async (req, res, next) => {
 
     res.status(200).json(userTweets);
   } catch (err) {
-    handleError(500, err);
+    res.json(err)
   }
 };

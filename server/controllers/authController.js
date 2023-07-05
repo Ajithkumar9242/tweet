@@ -30,7 +30,7 @@ export const signIn = async (req, res) =>{
 
      const { password, ...othersData } = user._doc;
 
-     res.status(200).json(othersData);
+     res.status(200).json({othersData});
     } catch (error) {
         res.json(error)
     }
